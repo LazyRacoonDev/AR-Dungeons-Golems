@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 4755b35b590504809a7525fd2109c2e2
+  - enabled: 1
+    path: Assets/Scenes/Location-basedGame.unity
+    guid: 42f6aa7ce7a604f16ade319663f46ceb
+  - enabled: 1
+    path: Assets/Scenes/DummyScene.unity
+    guid: f78580ae40540a84081975388b4c1aa0
+  - enabled: 1
+    path: Assets/Scenes/DummyScene 1.unity
+    guid: 52fb7d98310fa834ab00e63d32199e72
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}

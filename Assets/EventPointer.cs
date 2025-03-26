@@ -12,9 +12,14 @@ public class EventPointer : MonoBehaviour
 
     LocationStatus playerLocation;
     public Vector2d eventPos;
+    public int eventID; 
+
+    UIMenu uiMenu;
+    EventManager eventManager;
     void Start()
     {
-        
+        uiMenu = GameObject.Find("Canvas").GetComponent<UIMenu>();
+        eventManager = GameObject.Find("EventManager").GetComponent<EventManager>();
     }
 
     // Update is called once per frame
@@ -36,6 +41,13 @@ public class EventPointer : MonoBehaviour
         var eventLocation = new GeoCoordinatePortable.GeoCoordinate(eventPos[0], eventPos[1]);
         var distance = currentLocation.GetDistanceTo(eventLocation);
         Debug.Log("Distance to the pointer: " + distance);
-        Debug.Log("Clicked on the pointer");
+        if(distance < eventManager.maxDistance)
+        {
+            uiMenu.ShowInRangePanel(eventID);
+        }
+        else
+        {
+            uiMenu.ShowOutOfRangePanel();
+        }
     }
 }
