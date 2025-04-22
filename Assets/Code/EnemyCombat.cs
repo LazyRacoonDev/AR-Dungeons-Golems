@@ -21,7 +21,7 @@ public class EnemyCombat : MonoBehaviour
     public float moveSpeed = 2.5f;
 
     private Transform playerTarget;
-    private int currentHealth;
+    private float currentHealth;
     private float attackTimer;
     private GameObject playerObj;
     private bool isAttacking; 
@@ -137,9 +137,10 @@ public class EnemyCombat : MonoBehaviour
         isAttacking = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log("Enemy took damage: " + damage + ", Current Health: " + currentHealth);
         if (currentHealth <= 0)
         {
             Die();
