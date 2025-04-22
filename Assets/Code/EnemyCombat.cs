@@ -15,21 +15,23 @@ public class EnemyCombat : MonoBehaviour
     public int highDamage = 20;
     public float meleeDist = 5f;
     public float shootProb = 0.4f; 
+    public float attackRange = 10f; 
 
     // Movement
-    public float moveSpeed = 5f;
+    public float moveSpeed = 2.5f;
 
     private Transform playerTarget;
     private int currentHealth;
     private float attackTimer;
     private GameObject playerObj;
-    private bool canAttack = true; 
+    private bool isAttacking; 
 
     void Start()
     {
         currentHealth = maxHealth;
         attackTimer = attackInterval;
         playerObj = GameObject.FindWithTag("Player");
+        isAttacking = false; 
 
         if (playerObj != null)
         {
@@ -54,50 +56,60 @@ public class EnemyCombat : MonoBehaviour
         float distance = Vector3.Distance(transform.position, playerTarget.position);
         Debug.Log(distance);
 
-        if (canAttack)
+        if (!isAttacking)
         {
-            // Check if the player is within melee range, if not, move towards the player or throw an ability
-            if (distance > meleeDist)
+            if (distance > attackRange)
             {
-                float randomValue = Random.Range(0f, 1f);
-                if(randomValue < shootProb)
+                MoveToPlayer();
+            }
+            else if (distance <= attackRange && distance > meleeDist)
+            {
+                float randomValue = Random.Range(0f, 2f);
+                if (randomValue < shootProb)
                 {
                     StartCoroutine(CastAbility());
                 }
                 else
                 {
-                    Vector3 direction = (playerTarget.position - transform.position).normalized;
-                    transform.position += direction * moveSpeed * Time.deltaTime;
+                    MoveToPlayer();
                 }
-                
             }
             else
             {
-                int attack = Random.Range(0, 2);
-                if (attack == 0)
+                int attackType = Random.Range(0, 2); // 0 for weak, 1 for strong
+                if (attackType == 0)
                     StartCoroutine(AttackWeak());
                 else
                     StartCoroutine(AttackStrong());
             }
-                
-        }       
+        }
+        
+
+    }
+
+    void MoveToPlayer()
+    {
+        if(playerTarget == null) return;
+
+        Vector3 direction = playerTarget.position - transform.position;
+        direction.Normalize();
+        transform.position += direction * moveSpeed * Time.deltaTime;
+        Debug.Log("Moving towards player");
     }
 
     IEnumerator CastAbility()
     {
-        canAttack = false;
-        yield return new WaitForSeconds(0.5f);
-
+        isAttacking = true;
+        Debug.Log("Shoot");
         Instantiate(abilityPrefab, transform.position, transform.rotation);
 
         yield return new WaitForSeconds(attackInterval);
-        canAttack = true;
+        isAttacking = false;
     }
 
     IEnumerator AttackWeak()
     {
-        canAttack = false;
-        yield return new WaitForSeconds(0.5f);
+        isAttacking = true;
 
         // Perform weak attack logic here
         Debug.Log("Weak Attack!");
@@ -108,13 +120,12 @@ public class EnemyCombat : MonoBehaviour
         }
 
         yield return new WaitForSeconds(attackInterval);
-        canAttack = true;
+        isAttacking = false;
     }
 
     IEnumerator AttackStrong()
     {
-        canAttack = false;
-        yield return new WaitForSeconds(0.5f);
+        isAttacking = true;
         // Perform strong attack logic here
         Debug.Log("Strong Attack!");
         float Distance = Vector3.Distance(transform.position, playerTarget.position);
@@ -123,7 +134,7 @@ public class EnemyCombat : MonoBehaviour
             playerTarget.GetComponent<PlayerHealth>().TakeDamage(highDamage);
         }
         yield return new WaitForSeconds(attackInterval);
-        canAttack = true;
+        isAttacking = false;
     }
 
     public void TakeDamage(int damage)
