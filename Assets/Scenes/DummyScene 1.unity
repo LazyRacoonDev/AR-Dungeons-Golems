@@ -453,6 +453,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182132033}
   m_CullTransparentMesh: 1
+--- !u!1 &480762441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480762442}
+  m_Layer: 0
+  m_Name: Spawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &480762442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480762441}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.096, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1913145117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &482712778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1640,7 @@ GameObject:
   - component: {fileID: 1913145114}
   - component: {fileID: 1913145113}
   - component: {fileID: 1913145118}
+  - component: {fileID: 1913145119}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1688,6 +1720,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 482712779}
+  - {fileID: 480762442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1913145118
@@ -1713,6 +1746,26 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1913145119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913145112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c029ebbd7ffc064c97f63863398f9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 2400580602671713911, guid: 3746c64979432fe43ab9b7c06678378b,
+    type: 3}
+  shieldPrefab: {fileID: 5356754608767948996, guid: b3481bc2bb529f34082626941f602520,
+    type: 3}
+  ballSpawnPoint: {fileID: 480762442}
+  shieldSpawnPoint: {fileID: 480762442}
+  throwButton: {fileID: 573513914}
+  shieldButton: {fileID: 1645168119}
 --- !u!1 &2072309439
 GameObject:
   m_ObjectHideFlags: 0
