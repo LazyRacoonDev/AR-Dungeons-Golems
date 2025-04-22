@@ -31,8 +31,7 @@ public class AbilityProjectile : MonoBehaviour
             {
                 playerHealth.TakeDamage((int)damage);
             }
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject); 
     }
 }
