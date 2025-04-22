@@ -149,6 +149,12 @@ public class EnemyCombat : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+    GameManager gm = FindObjectOfType<GameManager>();
+    if (gm != null)
+    {
+        gm.ShowVictoryScreen();
     }
+
+    Destroy(gameObject);
+}
 }
