@@ -107,6 +107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityPrefab: {fileID: 2762009629636373201, guid: 3cec5447184eb5f4da40ba8d01f28cda,
     type: 3}
-  attackInterval: 3
+  playerObj: {fileID: 2057837491602632215, guid: 047c2a5b101ccd841bb7fe3b080f4985,
+    type: 3}
   maxHealth: 100
-  abilitySpeed: 10
+  attackInterval: 3
+  lowDamage: 10
+  highDamage: 20
+  meleeDist: 2.5
+  shootProb: 0.4
+  moveSpeed: 5
