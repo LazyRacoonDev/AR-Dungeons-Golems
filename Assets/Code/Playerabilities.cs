@@ -34,6 +34,8 @@ public class AbilityControllerUI : MonoBehaviour
             Rigidbody rb = ball.GetComponent<Rigidbody>();
             if (rb != null)
                 rb.velocity = ballSpawnPoint.forward * 10f;
+
+            Destroy(ball, 3f); // Destroy the ball after 2 seconds
         }
     }
 
