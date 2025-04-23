@@ -19,17 +19,18 @@ public class EventManager : MonoBehaviour
 
     public void ActivateEvent(int eventID)
     {
-        switch (eventID)
-        {
-            case 1:
-                SceneManager.LoadScene("DummyScene");
-                break;
-            case 2:
-                SceneManager.LoadScene("DummyScene 1");
-                break;
-            default:
-                Debug.Log("Event not found");
-                break;
-        }
+        //switch (eventID)
+        //{
+        //    case 1:
+        //        SceneManager.LoadScene("DummyScene");
+        //        break;
+        //    case 2:
+        //        SceneManager.LoadScene("DummyScene 1");
+        //        break;
+        //    default:
+        //        Debug.Log("Event not found");
+        //        break;
+        //}
+        SceneManager.LoadScene("DummyScene 1");
     }
 }
