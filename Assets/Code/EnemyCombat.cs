@@ -5,7 +5,6 @@ public class EnemyCombat : MonoBehaviour
 {
     public GameObject abilityPrefab;
     public CanvasGameManager gameManager;
-
     public int maxHealth = 100;
    
 
@@ -26,8 +25,11 @@ public class EnemyCombat : MonoBehaviour
     private GameObject playerObj;
     private bool isAttacking; 
 
+    private Animator animator;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         attackTimer = attackInterval;
         playerObj = GameObject.FindWithTag("Player");
@@ -45,17 +47,23 @@ public class EnemyCombat : MonoBehaviour
         {
             transform.LookAt(playerTarget);
         }
-        
         HandleCombat();
     }
 
     void HandleCombat()
     {
         if (playerTarget == null) return;
-
         float distance = Vector3.Distance(transform.position, playerTarget.position);
-        //Debug.Log(distance);
-
+        
+        if(distance > attackRange)
+        {
+            animator.SetBool("OutOfRange", true);
+        }
+        else
+        {
+            animator.SetBool("OutOfRange", false);
+        }
+        
         if (!isAttacking)
         {
             if (distance > attackRange)
@@ -67,6 +75,7 @@ public class EnemyCombat : MonoBehaviour
                 float randomValue = Random.Range(0f, 2f);
                 if (randomValue < shootProb)
                 {
+                   
                     StartCoroutine(CastAbility());
                 }
                 else
@@ -89,7 +98,7 @@ public class EnemyCombat : MonoBehaviour
 
     void MoveToPlayer()
     {
-        if(playerTarget == null) return;
+        if(playerTarget == null || isAttacking) return;
 
         Vector3 direction = playerTarget.position - transform.position;
         direction.Normalize();
@@ -101,6 +110,7 @@ public class EnemyCombat : MonoBehaviour
     {
         isAttacking = true;
         Debug.Log("Shoot");
+        animator.SetTrigger("isAttackLong");
         Instantiate(abilityPrefab, transform.position, transform.rotation);
 
         yield return new WaitForSeconds(attackInterval);
@@ -113,6 +123,7 @@ public class EnemyCombat : MonoBehaviour
 
         // Perform weak attack logic here
         Debug.Log("Weak Attack!");
+        animator.SetTrigger("isAttackShort");
         float Distance = Vector3.Distance(transform.position, playerTarget.position);
         if (Distance <= meleeDist)
         {
@@ -128,6 +139,7 @@ public class EnemyCombat : MonoBehaviour
         isAttacking = true;
         // Perform strong attack logic here
         Debug.Log("Strong Attack!");
+        animator.SetTrigger("isAttackShort");
         float Distance = Vector3.Distance(transform.position, playerTarget.position);
         if (Distance <= meleeDist)
         {
@@ -140,6 +152,7 @@ public class EnemyCombat : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        animator.SetTrigger("isHit");
         Debug.Log("Enemy took damage: " + damage + ", Current Health: " + currentHealth);
         if (currentHealth <= 0)
         {

@@ -919,13 +919,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4099d06787e1a48b3785a5e6532046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType1: {fileID: 1909921119951158997, guid: 7187be2a196c64e4681335ee14df44be,
+  enemyType1: {fileID: 9137032837993464747, guid: ef945c172cdd5ff4ea7b67f8786e2d40,
     type: 3}
-  enemyType2: {fileID: 1909921119951158997, guid: 7187be2a196c64e4681335ee14df44be,
+  enemyType2: {fileID: 9137032837993464747, guid: ef945c172cdd5ff4ea7b67f8786e2d40,
     type: 3}
-  enemyType3: {fileID: 1909921119951158997, guid: 7187be2a196c64e4681335ee14df44be,
+  enemyType3: {fileID: 9137032837993464747, guid: ef945c172cdd5ff4ea7b67f8786e2d40,
     type: 3}
-  enemyType4: {fileID: 1909921119951158997, guid: 7187be2a196c64e4681335ee14df44be,
+  enemyType4: {fileID: 9137032837993464747, guid: ef945c172cdd5ff4ea7b67f8786e2d40,
     type: 3}
   gameManager: {fileID: 1845731994}
   spawnPoint: {fileID: 687933271}
