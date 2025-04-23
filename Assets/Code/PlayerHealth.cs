@@ -11,24 +11,12 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
-
-    [HideInInspector] public string deathSceneName;
-
-    #if UNITY_EDITOR
-    [Header("Scene to load on death")]
-    public SceneAsset deathScene; // Solo para editor
-    #endif
+    public CanvasGameManager gameManager;
+    
 
     void Start()
     {
         currentHealth = maxHealth;
-
-        #if UNITY_EDITOR
-        if (deathScene != null)
-        {
-            deathSceneName = deathScene.name; // Guarda el nombre de la escena al iniciar
-        }
-        #endif
 
         Debug.Log("Player Health: " + currentHealth);
     }
@@ -46,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        gameManager.ShowDefeatCanvas();
         Debug.Log("Player has died.");
-        SceneManager.LoadScene(deathSceneName);
     }
 }

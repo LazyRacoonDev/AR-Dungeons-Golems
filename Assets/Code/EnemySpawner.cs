@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyType2;
     public GameObject enemyType3;
     public GameObject enemyType4;
+    public CanvasGameManager gameManager;
 
     public Transform spawnPoint;
 
@@ -35,10 +36,12 @@ public class EnemySpawner : MonoBehaviour
                 enemyToSpawn = enemyType4;
                 break;
         }
+        
 
         if (enemyToSpawn != null && spawnPoint != null)
         {
-            Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);
+            GameObject enemy = Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);
+            enemy.GetComponent<EnemyCombat>().gameManager = gameManager; 
         }
     }
 }

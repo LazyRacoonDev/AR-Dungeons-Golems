@@ -6,16 +6,6 @@ using UnityEngine.SceneManagement;
 public class EventManager : MonoBehaviour
 {
     public int maxDistance = 70;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ActivateEvent(int eventID)
     {
@@ -24,6 +14,7 @@ public class EventManager : MonoBehaviour
 
     public void GoToMap()
     {
+        Time.timeScale = 1f; // Resume the game
         SceneManager.LoadScene("Location-basedGame");
     }
 }

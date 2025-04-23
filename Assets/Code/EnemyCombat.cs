@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     public GameObject abilityPrefab;
-    
+    public CanvasGameManager gameManager;
 
     public int maxHealth = 100;
    
@@ -54,7 +54,7 @@ public class EnemyCombat : MonoBehaviour
         if (playerTarget == null) return;
 
         float distance = Vector3.Distance(transform.position, playerTarget.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
 
         if (!isAttacking)
         {
@@ -149,12 +149,7 @@ public class EnemyCombat : MonoBehaviour
 
     void Die()
     {
-    GameManager gm = FindObjectOfType<GameManager>();
-    if (gm != null)
-    {
-        gm.ShowVictoryScreen();
+        gameManager.ShowVictoryCanvas();
+        Destroy(gameObject);
     }
-
-    Destroy(gameObject);
-}
 }
