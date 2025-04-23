@@ -12,7 +12,7 @@
 
 - **Unity** (Game Engine)
 - **Mapbox SDK** (Location and mapping)
-- **AR Foundation** / **ARKit** / **ARCore** (Depending on platform)
+- **AR Foundation** 
 
 ## Known Issues
 - On first launch, the app requests location and camera permissions. Even if the permissions are given, the map may not load correctly. If this happens, restart the game and it will work
@@ -25,5 +25,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Hugo Castaño** – [@LazyRacoonDev](https://github.com/LazyRacoonDev)
 - **Bernat Cifuentes** – [@ItsBernii](https://github.com/ItsBernii)
-- **Rafael Esquius** – [@yourhandle](https://github.com/yourhandle)
+- **Rafael Esquius** – [@SRRafael8](https://github.com/SRRafael8)
 - **Nacho Moreno** – [@NachoMoren](https://github.com/NachoMoren)
