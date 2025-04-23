@@ -25,11 +25,7 @@ public class PlayerAbilities : MonoBehaviour
 
     void Start()
     {
-        if (throwButton != null)
-            throwButton.onClick.AddListener(ThrowBall);
-
-        if (shieldButton != null)
-            shieldButton.onClick.AddListener(ActivateShield);
+        
     }
 
     public void ThrowBall()
@@ -38,12 +34,13 @@ public class PlayerAbilities : MonoBehaviour
 
         if (ballPrefab && ballSpawnPoint)
         {
+            canThrow = false;
             GameObject ball = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
             Rigidbody rb = ball.GetComponent<Rigidbody>();
             if (rb != null)
                 rb.velocity = ballSpawnPoint.forward * 10f;
 
-            canThrow = false;
+            
             Invoke(nameof(ResetThrow), ballCooldown);
         }
     }
